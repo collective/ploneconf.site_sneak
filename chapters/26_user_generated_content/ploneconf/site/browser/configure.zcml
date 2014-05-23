@@ -1,0 +1,45 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="ploneconf.site">
+
+    <browser:jbot directory="template_overrides" />
+
+    <browser:page
+       name="demoview"
+       for="*"
+       layer="..interfaces.IPloneconfSiteLayer"
+       class=".views.DemoView"
+       template="templates/demoview.pt"
+       permission="zope2.View"
+       />
+
+    <browser:page
+       name="talkview"
+       for="ploneconf.site.interfaces.ITalk"
+       layer="..interfaces.IPloneconfSiteLayer"
+       class=".views.TalkView"
+       template="templates/talkview.pt"
+       permission="zope2.View"
+       />
+
+    <browser:page
+       name="talklistview"
+       for="*"
+       layer="..interfaces.IPloneconfSiteLayer"
+       class=".views.TalkListView"
+       template="templates/talklistview.pt"
+       permission="zope2.View"
+       />
+
+    <browser:viewlet
+      name="social"
+      for="ploneconf.site.behaviors.social.ISocial"
+      manager="plone.app.layout.viewlets.interfaces.IBelowContentTitle"
+      class=".viewlets.SocialViewlet"
+      layer="..interfaces.IPloneconfSiteLayer"
+      template="templates/social_viewlet.pt"
+      permission="zope2.View"
+      />
+
+</configure>

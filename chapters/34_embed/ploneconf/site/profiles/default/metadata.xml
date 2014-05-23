@@ -1,0 +1,8 @@
+<metadata>
+  <version>1002</version>
+    <dependencies>
+        <dependency>profile-plone.app.dexterity:default</dependency>
+        <dependency>profile-plone.app.relationfield:default</dependency>
+        <dependency>profile-starzel.votable_behavior:default</dependency>
+    </dependencies>
+</metadata>

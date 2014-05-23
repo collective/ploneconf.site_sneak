@@ -1,0 +1,26 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="ploneconf.site">
+
+    <browser:jbot directory="template_overrides" />
+
+    <browser:page
+       name="demoview"
+       for="*"
+       layer="zope.interface.Interface"
+       class=".views.DemoView"
+       template="templates/demoview.pt"
+       permission="zope2.View"
+       />
+
+    <browser:page
+       name="talkview"
+       for="*"
+       layer="zope.interface.Interface"
+       class=".views.TalkView"
+       template="templates/talkview.pt"
+       permission="zope2.View"
+       />
+
+</configure>

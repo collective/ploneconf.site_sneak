@@ -1,0 +1,25 @@
+#visual-portal-wrapper {
+    margin: 0 auto;
+    position: relative;
+    width: 1024px;
+}
+
+@media only screen and (max-width: 980px) {
+   #visual-portal-wrapper {
+       position: relative;
+       width: auto;
+   }
+}
+
+@media only screen and (max-width: 768px) {
+   #portal-columns > div {
+       width: 97.75%;
+       margin-left: -98.875%;
+       clear: both;
+   }
+
+   .searchButton,
+   .searchSection {
+       display: none;
+   }
+}

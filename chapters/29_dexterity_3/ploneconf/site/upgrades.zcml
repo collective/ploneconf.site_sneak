@@ -1,0 +1,27 @@
+<configure
+  xmlns="http://namespaces.zope.org/zope"
+  xmlns:i18n="http://namespaces.zope.org/i18n"
+  xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+  i18n_domain="ploneconf.site">
+
+  <genericsetup:upgradeStep
+    title="Modifiy class of talks"
+    description="Change the class of talks from 'plone.dexterity.content.Container' to 'ploneconf.site.content.talk.Talk'"
+    source="1"
+    destination="1001"
+    handler="ploneconf.site.upgrades.upgrade_site"
+    sortkey="1"
+    profile="ploneconf.site:default"
+    />
+
+  <genericsetup:upgradeStep
+    title="Add event-behavior to talks"
+    description=""
+    source="1001"
+    destination="1002"
+    handler="ploneconf.site.upgrades.turn_talks_to_events"
+    sortkey="1"
+    profile="ploneconf.site:default"
+    />
+
+</configure>

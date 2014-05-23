@@ -1,0 +1,10 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope">
+
+  <subscriber
+    for="starzel.votable_behavior.interfaces.IVotable
+         zope.lifecycleevent.IObjectModifiedEvent"
+    handler=".votable.votable_update"
+    />
+
+</configure>

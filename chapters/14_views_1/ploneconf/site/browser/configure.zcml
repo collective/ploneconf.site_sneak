@@ -1,0 +1,14 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="ploneconf.site">
+
+    <browser:page
+       name="demoview"
+       for="*"
+       class=".views.DemoView"
+       template="templates/demoview.pt"
+       permission="zope2.View"
+       />
+
+</configure>

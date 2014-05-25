@@ -26,7 +26,7 @@
        in Plone -->
   <genericsetup:registerProfile
       name="default"
-      title="PloneConf Talk"
+      title="PloneConf Site"
       directory="profiles/default"
       description="Extension profile for PloneConf Talk"
       provides="Products.GenericSetup.interfaces.EXTENSION"

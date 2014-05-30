@@ -5,8 +5,8 @@
   i18n_domain="ploneconf.site">
 
   <genericsetup:upgradeStep
-    title="Modifiy class of talks"
-    description="Change the class of talks from 'plone.dexterity.content.Container' to 'ploneconf.site.content.talk.Talk'"
+    title="Update and cleanup talks"
+    description="Updates typeinfo and moves talks to a folder 'talks'"
     source="1"
     destination="1001"
     handler="ploneconf.site.upgrades.upgrade_site"

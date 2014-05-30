@@ -6,8 +6,8 @@ default_profile = 'profile-ploneconf.site:default'
 logger = logging.getLogger('ploneconf.site')
 
 
-def upgrade_site(self):
-    self.runImportStepFromProfile(default_profile, 'typeinfo')
+def upgrade_site(setup):
+    setup.runImportStepFromProfile(default_profile, 'typeinfo')
     catalog = api.portal.get_tool('portal_catalog')
     portal = api.portal.get()
     if 'talks' not in portal:

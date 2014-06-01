@@ -29,7 +29,7 @@ class TalkListView(BrowserView):
                 'title': brain.Title,
                 'description': brain.Description,
                 'url': brain.getURL(),
-                'audience': ', '.join(brain.audience),
+                'audience': ', '.join(brain.audience or []),
                 'type_of_talk': brain.type_of_talk,
                 'speaker': brain.speaker,
                 'uuid': brain.UID,

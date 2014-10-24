@@ -51,8 +51,8 @@ class ISponsor(model.Schema):
         required=False,
     )
 
-    directives.read_permission(notes="cmf.AddPortalMember")
-    directives.write_permission(notes="cmf.AddPortalMember")
+    directives.read_permission(notes="cmf.ManagePortal")
+    directives.write_permission(notes="cmf.ManagePortal")
     notes = RichText(
         title=_(u"Secret Notes (only for site-admins)"),
         required=False

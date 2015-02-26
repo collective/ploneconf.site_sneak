@@ -50,6 +50,10 @@ Scenario: As a site administrator I can view a Talk
    When I go to the talk view
    Then I can see the talk title 'My Talk'
 
+Scenario: As a visitor I can view the new talk list
+   When I go to the talk list view
+   Then I can see a talk about 'Diazo designs are great'
+
 
 *** Keywords *****************************************************************
 
@@ -88,6 +92,10 @@ I go to the talk view
   Go To  ${PLONE_URL}/my-talk
   Wait until page contains  Site Map
 
+I go to the talk list view
+  Go To  ${PLONE_URL}/demoview
+  Wait until page contains  Site Map
+
 
 # --- THEN -------------------------------------------------------------------
 
@@ -99,3 +107,7 @@ a talk with the title '${title}' has been created
 I can see the talk title '${title}'
   Wait until page contains  Site Map
   Page should contain  ${title}
+
+I can see a talk about '${topic}'
+  Wait until page contains  Site Map
+  Page should contain  ${topic}

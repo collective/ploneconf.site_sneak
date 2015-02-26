@@ -4,7 +4,7 @@
 #
 # Run this robot test stand-alone:
 #
-#  $ bin/test -s plonetraining.testing -t test_task.robot --all
+#  $ bin/test -s plonetraining.testing -t test_talk.robot --all
 #
 # Run this robot test with robot server (which is faster):
 #
@@ -14,7 +14,7 @@
 #
 # 2) Run robot tests:
 #
-# $ bin/robot src/plonetraining/testing/tests/robot/test_task.robot
+# $ bin/robot src/plonetraining/testing/tests/robot/test_talk.robot
 #
 # See the http://docs.plone.org for further details (search for robot
 # framework).
@@ -38,14 +38,17 @@ Scenario: As a site administrator I can add a Talk
   Given a logged-in site administrator
     and an add talk form
    When I type 'My Talk' into the title field
+    and I type 'Awesome talk' into the details field
+    and I type 'Team Banzai' into the speakers field
+    and I type 'banzai@example.com' into the email field
     and I submit the form
    Then a talk with the title 'My Talk' has been created
 
 Scenario: As a site administrator I can view a Talk
   Given a logged-in site administrator
-    and a task 'My Talk'
+    and a talk 'My Talk'
    When I go to the talk view
-   Then I can see the task title 'My Talk'
+   Then I can see the talk title 'My Talk'
 
 
 *** Keywords *****************************************************************
@@ -58,7 +61,7 @@ a logged-in site administrator
 an add talk form
   Go To  ${PLONE_URL}/++add++talk
 
-a task 'My Talk'
+a talk 'My Talk'
   Create content  type=talk  id=my-talk  title=My Talk
 
 
@@ -67,10 +70,21 @@ a task 'My Talk'
 I type '${title}' into the title field
   Input Text  name=form.widgets.IDublinCore.title  ${title}
 
+I type '${details}' into the details field
+  Select frame  form-widgets-details_ifr
+  Input text  tinymce  ${details}
+  Unselect Frame
+
+I type '${speaker}' into the speakers field
+  Input Text  name=form.widgets.speaker  ${speaker}
+
+I type '${email}' into the email field
+  Input Text  name=form.widgets.email  ${email}
+
 I submit the form
   Click Button  Save
 
-I go to the task view
+I go to the talk view
   Go To  ${PLONE_URL}/my-talk
   Wait until page contains  Site Map
 

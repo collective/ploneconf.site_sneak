@@ -117,7 +117,7 @@ class TalkFunctionalTest(unittest.TestCase):
         import transaction
         transaction.commit()
 
-        self.browser.open(self.portal_url + '/my-talk/demoview')
+        self.browser.open(self.portal_url + '/demoview')
 
         self.assertIn('Dexterity for the win', self.browser.contents)
         self.assertIn('Deco is the future', self.browser.contents)

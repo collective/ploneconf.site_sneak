@@ -19,7 +19,7 @@ STRUCTURE = [
         'title': u'The Event',
         'id': 'the-event',
         'description': u'Plone Conference 2022',
-        'layout': 'frontpage-for-the-event',
+        'default-page': 'frontpage-for-the-event',
         'children': [{
             'type': 'Document',
             'title': u'Frontpage for the-event',
@@ -109,8 +109,11 @@ def _create_content(item, container):
             title=item['title'],
             id=item['id'],
             safe_id=False)
+        logger.info('Created item {}'.format(new.absolute_url()))
     if item.get('layout', False):
         new.setLayout(item['layout'])
+    if item.get('default-page', False):
+        new.setDefaultPage(item['default-page'])
     if item.get('allowed_types', False):
         _constrain(new, item['allowed_types'])
     if item.get('local_roles', False):
@@ -121,7 +124,6 @@ def _create_content(item, container):
                 obj=new)
     api.content.transition(new, to_state=item.get('state', 'published'))
     new.reindexObject()
-    logger.info('Created item {}'.format(new.absolute_url()))
     # call recursively for children
     for subitem in item.get('children', []):
         _create_content(subitem, new)

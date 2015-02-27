@@ -72,7 +72,8 @@
         permission="zope2.View"
         />
 
-<!--     <browser:viewlet
+<!--
+    <browser:viewlet
         name="number_of_talks"
         for="*"
         manager="plone.app.layout.viewlets.interfaces.IPortalFooter"
@@ -91,7 +92,5 @@
         permission="zope2.View"
         />
 -->
-
-
 
 </configure>

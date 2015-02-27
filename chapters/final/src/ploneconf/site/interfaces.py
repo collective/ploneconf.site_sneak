@@ -10,5 +10,4 @@ class IPloneconfSiteLayer(IDefaultBrowserLayer):
 
 
 class ITalk(Interface):
-    """Marker interface for Talks
-    """
+    """Marker interface for Talks"""

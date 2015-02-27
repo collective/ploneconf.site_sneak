@@ -88,8 +88,6 @@ def post_install(context):
     if isNotCurrentProfile(context):
         return
     # Do something during the installation of this package
-    # portal = api.portal.get()
-    # create_content_structure(portal)
 
 
 def content(context):
@@ -127,6 +125,7 @@ def _create_content(item, container):
     # call recursively for children
     for subitem in item.get('children', []):
         _create_content(subitem, new)
+
 
 def _constrain(context, allowed_types):
     behavior = ISelectableConstrainTypes(context)

@@ -9,6 +9,11 @@
     -webkit-box-shadow: 0 0 8px #000000;
 }
 
+/* Styles for ploneconf */
+.searchSection {
+    display: none;
+}
+
 
 /* Some css fixs to the default Plone 5-Theme */
 .formHelp {
@@ -40,4 +45,17 @@ textarea {
 
 .pat-textareamimetypeselector {
     display: none;
+}
+
+/* Small fixes for toolbar */
+#edit-zone a {
+    outline: 0
+}
+
+#edit-zone.plone-toolbar-top.expanded  nav > ul > li {
+    border-right: 1px dotted #888;
+}
+
+#edit-zone.plone-toolbar-top.expanded  nav > ul a > span + span {
+    padding: 0 8px 0 0;
 }

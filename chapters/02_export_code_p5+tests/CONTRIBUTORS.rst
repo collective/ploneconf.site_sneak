@@ -1,1 +1,0 @@
-- Patrick Gerken, do3cc@patrick-gerken.de

@@ -72,7 +72,7 @@
         permission="zope2.View"
         />
 
-    <browser:viewlet
+    <browser:page
         name="view"
         for="ploneconf.site.content.speaker.ISpeaker"
         layer="..interfaces.IPloneconfSiteLayer"

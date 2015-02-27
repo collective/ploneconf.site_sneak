@@ -7,8 +7,6 @@
 
         <h1>${context/first_name} ${context/last_name}</h1>
 
-        <div tal:content="structure view/w/last_name/render"></div>
-
         <div tal:define="talks view/talks;
                          single_talk python:len(talks) < 1"
              tal:condition="talks">
@@ -24,8 +22,10 @@
         </div>
 
         <div>
-            <a class="email-link" tal:attributes="href string:mailto:${context/email}">
-                Jane Doe
+            <a class="email-link"
+                tal:attributes="href string:mailto:${context/email}"
+                tal:condition="context/email">
+                Email
             </a>
             <div tal:content="structure view/w/biography/render">
                 Biography

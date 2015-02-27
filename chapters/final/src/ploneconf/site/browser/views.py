@@ -8,8 +8,7 @@ logger = logging.getLogger(__name__)
 
 
 class DemoView(BrowserView):
-    """ This is a sample browser view with one method.
-    """
+    """This is a sample browser view with one method."""
 
     def get_types(self):
         """Returns a dict with type names and the amount of items
@@ -33,13 +32,11 @@ class DemoView(BrowserView):
 
 
 class TalkView(DefaultView):
-    """ The default view for talks
-    """
+    """The default view for talks"""
 
 
 class TalkListView(BrowserView):
-    """ A list of talks
-    """
+    """A list of talks"""
 
     def talks(self):
         results = []

@@ -18,7 +18,13 @@ class SocialViewlet(ViewletBase):
 
 class SponsorsViewlet(ViewletBase):
 
-    @ram.cache(lambda *args: time() // (60 * 60))  # cache for 1 hour
+    def _sponsors_cachekey(method, self):
+        catalog = api.portal.get_tool('portal_catalog')
+        brains = catalog(portal_type='sponsor')
+        cachekey = sum([int(i.modified) for i in brains])
+        return cachekey
+
+    @ram.cache(_sponsors_cachekey)
     def _sponsors(self):
         """Return a list of dicts with info from sponsors.
         """

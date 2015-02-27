@@ -9,14 +9,14 @@ from zope import schema
 from zope.schema.vocabulary import SimpleVocabulary
 from zope.schema.vocabulary import SimpleTerm
 
-from ploneconf.site import MessageFactory as _
+from ploneconf.site import _
 
 
 LevelVocabulary = SimpleVocabulary(
-    [SimpleTerm(value=u'platinum', title=u'Platinum Sponsor'),
-     SimpleTerm(value=u'gold', title=u'Gold Sponsor'),
-     SimpleTerm(value=u'silver', title=u'Silver Sponsor'),
-     SimpleTerm(value=u'bronze', title=u'Bronze Sponsor')]
+    [SimpleTerm(value=u'platinum', title=_(u'Platinum Sponsor')),
+     SimpleTerm(value=u'gold', title=_(u'Gold Sponsor')),
+     SimpleTerm(value=u'silver', title=_(u'Silver Sponsor')),
+     SimpleTerm(value=u'bronze', title=_(u'Bronze Sponsor'))]
     )
 
 
@@ -26,35 +26,35 @@ class ISponsor(model.Schema):
 
     directives.widget(level=RadioFieldWidget)
     level = schema.Choice(
-        title=u"Sponsoring Level",
+        title=_(u'Sponsoring Level'),
         vocabulary=LevelVocabulary,
         required=True
     )
 
     text = RichText(
-        title=u"Text",
+        title=_(u'Text'),
         required=False
     )
 
     url = schema.URI(
-        title=u"Link",
+        title=_(u'Link'),
         required=False
     )
 
     fieldset('Images', fields=['logo', 'advertisment'])
     logo = namedfile.NamedBlobImage(
-        title=u"Logo",
+        title=_(u'Logo'),
         required=False,
     )
 
     advertisment = namedfile.NamedBlobImage(
-        title=u"Advertisment (Gold-sponsors and above)",
+        title=_(u'Advertisment (Gold-sponsors and above)'),
         required=False,
     )
 
-    directives.read_permission(notes="cmf.ManagePortal")
-    directives.write_permission(notes="cmf.ManagePortal")
+    directives.read_permission(notes='cmf.ManagePortal')
+    directives.write_permission(notes='cmf.ManagePortal')
     notes = RichText(
-        title=u"Secret Notes (only for site-admins)",
+        title=_(u'Secret Notes (only for site-admins)'),
         required=False
     )

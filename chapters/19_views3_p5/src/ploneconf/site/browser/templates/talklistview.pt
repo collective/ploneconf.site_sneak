@@ -1,0 +1,61 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="ploneconf.site">
+<body>
+
+<metal:head fill-slot="javascript_head_slot">
+    <link rel="stylesheet" type="text/css" media="screen" href="++resource++jquery.datatables/media/css/jquery.dataTables.css">
+
+    <script type="text/javascript" src="++resource++jquery.datatables.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            var oTable = $('#talks').dataTable({
+            });
+        })
+    </script>
+</metal:head>
+
+<metal:content-core fill-slot="content-core">
+
+    <table class="listing" id="talks">
+        <thead>
+            <tr>
+                <th>
+                    Title
+                </th>
+                <th>
+                    Speaker
+                </th>
+                <th>
+                    Audience
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr tal:repeat="talk view/talks">
+                <td>
+                    <a href=""
+                       tal:attributes="href talk/url;
+                                       title talk/description"
+                       tal:content="talk/title">
+                       The 7 sins of plone-development
+                    </a>
+                </td>
+                <td tal:content="talk/speaker">
+                    Philip Bauer
+                </td>
+                <td tal:content="talk/audience">
+                    Advanced
+                </td>
+            </tr>
+            <tr tal:condition="not:view/talks">
+                <td colspan=3>
+                    No talks so far :-(
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</metal:content-core>
+</body>
+</html>

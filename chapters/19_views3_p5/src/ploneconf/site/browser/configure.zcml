@@ -1,0 +1,48 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="ploneconf.site">
+
+    <!-- Set overrides folder for Just-a-Bunch-Of-Templates product -->
+    <include package="z3c.jbot" file="meta.zcml" />
+    <browser:jbot
+        directory="overrides"
+        layer="ploneconf.site.interfaces.IPloneconfSiteLayer"
+        />
+
+    <!-- Publish static files -->
+    <browser:resourceDirectory
+        name="ploneconf.site"
+        directory="static"
+        />
+
+    <browser:page
+       name="demoview"
+       for="*"
+       class=".views.DemoView"
+       template="templates/demoview.pt"
+       permission="zope2.View"
+       />
+
+    <browser:page
+      name="talkview"
+      for="*"
+      layer="zope.interface.Interface"
+      class=".views.TalkView"
+      template="templates/talkview.pt"
+      permission="zope2.View"
+      />
+
+    <browser:page
+      name="talklistview"
+      for="*"
+      layer="zope.interface.Interface"
+      class=".views.TalkListView"
+      template="templates/talklistview.pt"
+      permission="zope2.View"
+      />
+     
+
+
+</configure>

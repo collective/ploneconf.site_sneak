@@ -13,10 +13,10 @@ from ploneconf.site import MessageFactory as _
 
 
 LevelVocabulary = SimpleVocabulary(
-    [SimpleTerm(value=u'platinum', title=_(u'Platinum Sponsor')),
-     SimpleTerm(value=u'gold', title=_(u'Gold Sponsor')),
-     SimpleTerm(value=u'silver', title=_(u'Silver Sponsor')),
-     SimpleTerm(value=u'bronze', title=_(u'Bronze Sponsor'))]
+    [SimpleTerm(value=u'platinum', title=u'Platinum Sponsor'),
+     SimpleTerm(value=u'gold', title=u'Gold Sponsor'),
+     SimpleTerm(value=u'silver', title=u'Silver Sponsor'),
+     SimpleTerm(value=u'bronze', title=u'Bronze Sponsor')]
     )
 
 
@@ -26,35 +26,35 @@ class ISponsor(model.Schema):
 
     directives.widget(level=RadioFieldWidget)
     level = schema.Choice(
-        title=_(u"Sponsoring Level"),
+        title=u"Sponsoring Level",
         vocabulary=LevelVocabulary,
         required=True
     )
 
     text = RichText(
-        title=_(u"Text"),
+        title=u"Text",
         required=False
     )
 
     url = schema.URI(
-        title=_(u"Link"),
+        title=u"Link",
         required=False
     )
 
     fieldset('Images', fields=['logo', 'advertisment'])
     logo = namedfile.NamedBlobImage(
-        title=_(u"Logo"),
+        title=u"Logo",
         required=False,
     )
 
     advertisment = namedfile.NamedBlobImage(
-        title=_(u"Advertisment (Gold-sponsors and above)"),
+        title=u"Advertisment (Gold-sponsors and above)",
         required=False,
     )
 
     directives.read_permission(notes="cmf.ManagePortal")
     directives.write_permission(notes="cmf.ManagePortal")
     notes = RichText(
-        title=_(u"Secret Notes (only for site-admins)"),
+        title=u"Secret Notes (only for site-admins)",
         required=False
     )

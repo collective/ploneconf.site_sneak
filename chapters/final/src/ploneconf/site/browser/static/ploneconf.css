@@ -10,7 +10,7 @@
 }
 
 /* Styles for ploneconf */
-.searchSection {
+#portal-header #portal-searchbox .searchSection {
     display: none;
 }
 

@@ -14,12 +14,9 @@ class ISpeaker(model.Schema):
     """Dexterity-Schema for Speaker
     """
 
-    first_name = schema.TextLine(
-        title=_(u'First Name'),
-    )
-
-    last_name = schema.TextLine(
-        title=_(u'Last Name'),
+    title = schema.TextLine(
+        title=_(u'Name'),
+        required=True,
     )
 
     email = schema.TextLine(

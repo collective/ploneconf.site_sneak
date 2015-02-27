@@ -1,0 +1,6 @@
+<div class="date-to-conference">
+    <div class="pat-moment"
+         data-pat-moment="format: relative">
+        ${python: view.date()}
+    </div>
+</div>

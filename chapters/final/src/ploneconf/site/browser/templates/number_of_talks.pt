@@ -1,0 +1,11 @@
+<?python
+
+from plone import api
+catalog = api.portal.get_tool('portal_catalog')
+talks_amount = len(catalog(portal_type='talk'))
+
+?>
+
+<div class="number_of_talks">
+    There are ${talks_amount} talks.
+</div>

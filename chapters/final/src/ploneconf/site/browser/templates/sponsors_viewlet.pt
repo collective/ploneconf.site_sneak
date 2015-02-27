@@ -1,10 +1,14 @@
 <div metal:define-macro="portal_sponsorbox"
      i18n:domain="ploneconf.site">
-    <div id="portal-sponsorbox"
+    <div id="portal-sponsorbox" class="container"
          tal:define="sponsors view/sponsors;">
+        <div class="row">
+            <h2>We ❤ our sponsors</h2>
+        </div>
         <div tal:repeat="level sponsors"
              tal:attributes="id python:'level-' + level"
-             tal:condition="sponsors">
+             tal:condition="sponsors"
+             class="row">
             <h3 tal:content="python: level.capitalize()">
                 Level
             </h3>
@@ -18,7 +22,6 @@
                     </a>
                 </div>
             </tal:images>
-            <div class="visualClear"><!-- --></div>
         </div>
     </div>
 </div>

@@ -1,0 +1,37 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="ploneconf.site">
+<body>
+
+    <metal:content-core fill-slot="content-core">
+
+        <h1>${context/first_name} ${context/last_name}</h1>
+
+        <div tal:content="structure view/w/last_name/render"></div>
+
+        <div tal:define="talks view/talks;
+                         single_talk python:len(talks) < 1"
+             tal:condition="talks">
+            <h3>Talks by ${context/first_name} ${context/last_name}</h3>
+            <ul tal:omit-tag="single_talk">
+                <li tal:repeat="talk talks"
+                    tal:omit-tag="single_talk">
+                    <a tal:attributes="href python:talk['href']">
+                        ${talk/title}
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div>
+            <a class="email-link" tal:attributes="href string:mailto:${context/email}">
+                Jane Doe
+            </a>
+            <div tal:content="structure view/w/biography/render">
+                Biography
+            </div>
+        </div>
+
+    </metal:content-core>
+</body>
+</html>

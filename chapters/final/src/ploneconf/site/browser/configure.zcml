@@ -72,6 +72,15 @@
         permission="zope2.View"
         />
 
+    <browser:viewlet
+        name="view"
+        for="ploneconf.site.content.speaker.ISpeaker"
+        layer="..interfaces.IPloneconfSiteLayer"
+        class=".speaker.SpeakerView"
+        template="templates/speaker.pt"
+        permission="zope2.View"
+        />
+
 <!--
     <browser:viewlet
         name="number_of_talks"

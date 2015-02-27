@@ -9,3 +9,35 @@
     -webkit-box-shadow: 0 0 8px #000000;
 }
 
+
+/* Some css fixs to the default Plone 5-Theme */
+.formHelp {
+    display: block;
+}
+
+.field span.option {
+    display: block;
+}
+
+.field span.option input[type="checkbox"].required,
+.field span.option input[type="radio"].required {
+    margin-right: 0.4em;
+}
+
+.field span.option input[type="checkbox"].required:after,
+.field span.option input[type="radio"].required:after {
+    color: transparent;
+    content: '';
+}
+
+textarea {
+    height: 100px !important;
+}
+
+.select2-container-multi .select2-choices .select2-search-field input {
+    min-width: 200px !important;
+}
+
+.pat-textareamimetypeselector {
+    display: none;
+}

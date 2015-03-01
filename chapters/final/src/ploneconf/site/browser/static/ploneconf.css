@@ -10,10 +10,29 @@
 }
 
 /* Styles for ploneconf */
-#portal-header #portal-searchbox .searchSection {
+header #portal-header #portal-searchbox .searchSection {
     display: none;
 }
 
+#content .event.summary {
+    box-shadow: none;
+    float: none;
+    max-width: 100%;
+}
+
+.talkinfo #portal-column-content {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.17);
+    padding: 1em;
+    background-color: #fff;
+}
+
+.talkinfo h1 {
+    font-size: 20px;
+}
+
+.talkinfo .event.summary {
+    background-color: #fff;
+}
 
 /* Some css fixs to the default Plone 5-Theme */
 .formHelp {

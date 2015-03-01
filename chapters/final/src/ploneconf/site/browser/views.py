@@ -34,6 +34,15 @@ class DemoView(BrowserView):
 class TalkView(DefaultView):
     """The default view for talks"""
 
+    def speaker(self):
+        """Return the speaker form the relation"""
+        relation = self.context.speaker_rel
+        if not relation:
+            return
+        obj = relation.to_object
+        if api.user.has_permission('View', obj=obj):
+            return obj
+
 
 class TalkListView(BrowserView):
     """A list of talks"""

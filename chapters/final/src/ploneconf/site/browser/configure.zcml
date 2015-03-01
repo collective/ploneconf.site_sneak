@@ -81,6 +81,15 @@
         permission="zope2.View"
         />
 
+    <browser:page
+        name="frontpage"
+        for="*"
+        layer="..interfaces.IPloneconfSiteLayer"
+        class=".frontpage.FrontPageView"
+        template="templates/frontpage.pt"
+        permission="zope2.View"
+        />
+
 <!--
     <browser:viewlet
         name="number_of_talks"

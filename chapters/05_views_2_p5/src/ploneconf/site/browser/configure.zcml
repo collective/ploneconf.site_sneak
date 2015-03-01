@@ -18,21 +18,18 @@
         />
 
     <browser:page
-       name="demoview"
-       for="*"
-       class=".views.DemoView"
-       template="templates/demoview.pt"
-       permission="zope2.View"
-       />
+        name="demoview"
+        for="*"
+        class=".views.DemoView"
+        template="templates/demoview.pt"
+        permission="zope2.View"
+        />
 
     <browser:page
-      name="talkview"
-      for="*"
-      layer="zope.interface.Interface"
-      class=".views.TalkView"
-      template="templates/talkview.pt"
-      permission="zope2.View"
-      />
-
+        name="training"
+        for="*"
+        template="templates/training.pt"
+        permission="zope2.View"
+        />
 
 </configure>

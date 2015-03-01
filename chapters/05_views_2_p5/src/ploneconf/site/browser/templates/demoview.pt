@@ -1,39 +1,46 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       lang="en"
       metal:use-macro="context/main_template/macros/master"
       i18n:domain="ploneconf.site">
 <body>
 
-<metal:block fill-slot="top_slot"
-    tal:define="dummy python:request.set('disable_border', 1)" />
+<metal:main fill-slot="main">
+    <tal:main-macro metal:define-macro="main">
 
-<metal:content-core fill-slot="content-core">
+        <div tal:replace="structure provider:plone.abovecontenttitle" />
 
-<table tal:define="talks python:[{'title':'Dexterity for the win!',
-                                  'subjects':('content-types', 'dexterity')},
-                                 {'title':'Deco is the future',
-                                  'subjects':('layout', 'deco')},
-                                 {'title':'The State of Plone',
-                                  'subjects':('keynote',) },
-                                 {'title':'Diazo designs are great',
-                                  'subjects':('design', 'diazo', 'xslt')}
-                                ]">
-    <tr>
-        <th>Title</th>
-        <th>Topics</th>
-    </tr>
-    <tr tal:repeat="talk talks">
-        <td tal:content="talk/title">A talk</td>
-        <td tal:define="subjects talk/subjects">
-            <span tal:repeat="subject subjects"
-                  tal:replace="subject">
-            </span>
-        </td>
-    </tr>
-</table>
+        <h1 class="documentFirstHeading">Sample view</h1>
 
-</metal:content-core>
+        <div tal:replace="structure provider:plone.belowcontenttitle" />
+
+        <p class="documentDescription">This sample view shows a table with
+        all the content types installed on the system and how many objects
+        of each exist.</p>
+
+        <div tal:replace="structure provider:plone.abovecontentbody" />
+
+        <table class="listing">
+            <thead>
+                <tr>
+                    <th>Content type</th>
+                    <th>Number of elements</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr tal:repeat="item view/get_types">
+                    <td tal:content="item/type"></td>
+                    <td tal:content="item/qtt"></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div tal:replace="structure provider:plone.belowcontentbody" />
+
+    </tal:main-macro>
+</metal:main>
 
 </body>
 </html>
-

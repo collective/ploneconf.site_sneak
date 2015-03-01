@@ -18,12 +18,12 @@
         />
 
     <browser:page
-       name="demoview"
-       for="*"
-       class=".views.DemoView"
-       template="templates/demoview.pt"
-       permission="zope2.View"
-       />
+        name="demoview"
+        for="*"
+        class=".views.DemoView"
+        template="templates/demoview.pt"
+        permission="zope2.View"
+        />
 
     <browser:page
         name="training"

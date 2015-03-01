@@ -7,8 +7,7 @@ logger = logging.getLogger(__name__)
 
 
 class DemoView(BrowserView):
-    """ This is a sample browser view with one method.
-    """
+    """This is a sample browser view with one method."""
 
     def get_types(self):
         """Returns a dict with type names and the amount of items

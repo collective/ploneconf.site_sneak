@@ -6,7 +6,8 @@
 
 <metal:content-core fill-slot="content-core">
 
-<table tal:define="talks python:[{'title':'Dexterity for the win!',
+<table class="listing"
+       tal:define="talks python:[{'title':'Dexterity for the win!',
                                   'subjects':('content-types', 'dexterity')},
                                  {'title':'Deco is the future',
                                   'subjects':('layout', 'deco')},
@@ -28,6 +29,17 @@
         </td>
     </tr>
 </table>
+
+
+    <div>
+      <?python
+      someoptions = {
+          'id': context.id,
+          'title': context.title
+      }
+      ?>
+      This object has the id "${python:someoptions['id']}"" and the title "${python:someoptions['title']}".
+    </div>
 
 </metal:content-core>
 

@@ -9,12 +9,6 @@ logger = getLogger(__name__)
 
 STRUCTURE = [
     {
-        'type': 'Document',
-        'title': u'Plone Conference 2022',
-        'id': 'plone-conference-2022',
-        'description': u'',
-    },
-    {
         'type': 'Folder',
         'title': u'The Event',
         'id': 'the-event',
@@ -68,7 +62,7 @@ STRUCTURE = [
             'type': 'News Item',
             'title': u'Submit your talks!',
             'id': 'submit-your-talks',
-            'description': u'',}
+            'description': u'', }
         ],
     },
     {
@@ -79,18 +73,26 @@ STRUCTURE = [
     },
 ]
 
+
 def isNotCurrentProfile(context):
     return context.readDataFile('ploneconfsite_marker.txt') is None
 
 
 def post_install(context):
-    """Post install script"""
+    """Setuphandler for the profile 'default'
+    """
     if isNotCurrentProfile(context):
         return
     # Do something during the installation of this package
+    portal = api.portal.get()
+    members = portal.get('Members', None)
+    if members is not None:
+        api.content.delete(members)
 
 
 def content(context):
+    """Setuphandler for the profile 'content'
+    """
     if context.readDataFile('ploneconfsite_content_marker.txt') is None:
         return
     portal = api.portal.get()

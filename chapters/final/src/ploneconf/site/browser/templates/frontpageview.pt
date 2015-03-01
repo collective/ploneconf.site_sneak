@@ -10,6 +10,7 @@
         tal:content="structure python:context.text.output_relative_to(view.context)" />
 
     <div class="col-lg-6">
+        <h2>Todays Talks</h2>
         <div metal:use-macro="context/@@talklistview/talklist">
             Instead of this the content of the macro will appear...
         </div>

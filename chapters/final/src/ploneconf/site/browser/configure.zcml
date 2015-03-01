@@ -77,16 +77,16 @@
         for="ploneconf.site.content.speaker.ISpeaker"
         layer="..interfaces.IPloneconfSiteLayer"
         class=".speaker.SpeakerView"
-        template="templates/speaker.pt"
+        template="templates/speakerview.pt"
         permission="zope2.View"
         />
 
     <browser:page
-        name="frontpage"
+        name="frontpageview"
         for="*"
         layer="..interfaces.IPloneconfSiteLayer"
         class=".frontpage.FrontPageView"
-        template="templates/frontpage.pt"
+        template="templates/frontpageview.pt"
         permission="zope2.View"
         />
 

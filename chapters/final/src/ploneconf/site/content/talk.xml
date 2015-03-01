@@ -28,6 +28,11 @@
         </values>
       </value_type>
     </field>
+    <field name="room" type="zope.schema.TextLine">
+      <description>Room</description>
+      <title>Room</title>
+      <required>False</required>
+    </field>
     <field name="speaker" type="zope.schema.TextLine">
       <description>Name (or names) of the speaker</description>
       <title>Speaker</title>

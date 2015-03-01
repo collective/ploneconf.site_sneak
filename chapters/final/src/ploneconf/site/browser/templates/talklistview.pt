@@ -19,6 +19,12 @@
             <th>
                 Audience
             </th>
+            <th>
+                Time
+            </th>
+            <th>
+                Room
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -39,10 +45,19 @@
             <td tal:content="talk/audience">
                 Advanced
             </td>
+            <td tal:content="talk/start"
+                class="pat-moment"
+                data-pat-moment="format: LT">
+                12:00 a.m.
+            </td>
+            <td tal:content="talk/room">
+                Room 212
+            </td>
+
         </tr>
         <tr tal:condition="not:view/talks">
             <td colspan=3>
-                No talks so far :-(
+                No talks
             </td>
         </tr>
     </tbody>

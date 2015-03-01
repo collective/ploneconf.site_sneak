@@ -14,13 +14,15 @@ class FrontPageView(BrowserView):
         results = []
         catalog = api.portal.get_tool('portal_catalog')
         today = datetime.date.today()
+        tomorrow = today + datetime.timedelta(days=1)
+        date_range_query = {'query': (today, tomorrow), 'range': 'min:max'}
         brains = catalog(
             portal_type='talk',
+            start=date_range_query,
             sort_on='start',
-            sort_order='descending'
+            sort_order='ascending'
         )
         for brain in brains:
-            if brain.start.date() == today:
                 results.append({
                     'title': brain.Title,
                     'description': brain.Description,

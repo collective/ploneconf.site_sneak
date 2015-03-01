@@ -28,10 +28,16 @@
         </values>
       </value_type>
     </field>
-    <field name="room" type="zope.schema.TextLine">
+    <field name="room" type="zope.schema.Choice"
+      form:widget="z3c.form.browser.radio.RadioFieldWidget">
       <description>Room</description>
       <title>Room</title>
       <required>False</required>
+      <values>
+        <element>Room 101</element>
+        <element>Room 201</element>
+        <element>Auditorium</element>
+      </values>
     </field>
     <field name="speaker" type="zope.schema.TextLine">
       <description>Name (or names) of the speaker</description>

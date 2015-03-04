@@ -1,0 +1,6 @@
+<metadata>
+ <version>1000</version>
+ <dependencies>
+  <dependency>profile-ploneconf.site:default</dependency>
+ </dependencies>
+</metadata>

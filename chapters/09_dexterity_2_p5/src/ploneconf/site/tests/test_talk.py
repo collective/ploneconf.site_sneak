@@ -67,7 +67,7 @@ class TalkFunctionalTest(unittest.TestCase):
         ctrl(name="form.widgets.IDublinCore.title").value = "My Talk"
         ctrl(name="form.widgets.IDublinCore.description").value = \
             "This is my talk"
-        ctrl(name="form.widgets.type_of_talk:list").value = ["Talk"]
+        ctrl(name="form.widgets.type_of_talk").value = ["Talk"]
         ctrl(name="form.widgets.details").value = "Long awesome talk"
         ctrl(name="form.widgets.audience:list").value = ["Advanced"]
         ctrl(name="form.widgets.speaker").value = "Team Banzai"

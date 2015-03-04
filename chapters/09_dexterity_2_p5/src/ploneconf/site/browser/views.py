@@ -47,14 +47,13 @@ class TalkListView(BrowserView):
         brains = portal_catalog(portal_type="talk",
                                 path=current_path)
         for brain in brains:
-            talk = brain.getObject()
             results.append({
                 'title': brain.Title,
                 'description': brain.Description,
                 'url': brain.getURL(),
-                'audience': ', '.join(talk.audience),
-                'type_of_talk': talk.type_of_talk,
-                'speaker': talk.speaker,
+                'audience': ', '.join(brain.audience or []),
+                'type_of_talk': brain.type_of_talk,
+                'speaker': brain.speaker,
                 'uuid': brain.UID,
                 })
         return results

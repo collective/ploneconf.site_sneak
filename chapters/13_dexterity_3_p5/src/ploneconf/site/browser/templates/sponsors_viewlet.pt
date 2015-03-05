@@ -8,7 +8,7 @@
         </div>
         <div tal:repeat="level sponsors"
              tal:attributes="id python:'level-' + level"
-             class="row">
+             class="row clearfix">
             <h3 tal:content="python: level.capitalize()">
                 Gold
             </h3>

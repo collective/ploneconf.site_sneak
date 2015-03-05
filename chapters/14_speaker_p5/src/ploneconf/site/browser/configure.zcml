@@ -73,7 +73,7 @@
 
     <browser:viewlet
         name="sponsorsviewlet"
-        manager="plone.app.layout.viewlets.interfaces.IPortalFooter"
+        manager="plone.app.layout.viewlets.interfaces.IBelowContent"
         for="*"
         layer="..interfaces.IPloneconfSiteLayer"
         class=".viewlets.SponsorsViewlet"

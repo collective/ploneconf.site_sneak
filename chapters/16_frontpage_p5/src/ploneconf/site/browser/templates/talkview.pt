@@ -1,0 +1,48 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="ploneconf.site">
+<body>
+    <metal:content-core fill-slot="content-core">
+
+        <p>
+            <span tal:content="context/type_of_talk">
+                Talk
+            </span>
+            suitable for
+            <span tal:replace="structure view/w/audience/render">
+                Audience
+            </span>
+        </p>
+
+        <tal:eventsummary replace="structure context/@@event_summary"/>
+
+        <div tal:content="structure view/w/details/render">
+            Details
+        </div>
+
+        <div tal:define="speaker view/speaker"
+             tal:condition="speaker">
+
+            <div class="newsImageContainer">
+                <img tal:condition="python:getattr(speaker, 'image', None)"
+                     tal:attributes="src string:${speaker/absolute_url}/@@images/image/thumb" />
+            </div>
+
+            <div>
+                <a class="email-link"
+                   tal:attributes="href string:mailto:${speaker/email}">
+                    <strong tal:content="speaker/title">
+                        Jane Doe
+                    </strong>
+                </a>
+                <div tal:condition="speaker/biography"
+                     tal:content="structure speaker/biography/output">
+                    Biography
+                </div>
+            </div>
+
+        </div>
+
+    </metal:content-core>
+</body>
+</html>

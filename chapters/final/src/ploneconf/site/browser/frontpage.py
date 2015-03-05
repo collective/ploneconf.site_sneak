@@ -30,7 +30,7 @@ class FrontPageView(BrowserView):
                     'url': brain.getURL(),
                     'audience': ', '.join(brain.audience or []),
                     'type_of_talk': brain.type_of_talk,
-                    'speaker': speaker.title,
+                    'speaker': speaker.title if speaker else None,
                     'uuid': brain.UID,
                     'start': brain.start,
                     'room': brain.room,

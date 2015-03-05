@@ -58,5 +58,13 @@
       <required>False</required>
       <title>Speaker Biography</title>
     </field>
+    <field name="speaker_rel" type="z3c.relationfield.schema.RelationChoice">
+      <description/>
+      <required>False</required>
+      <title>Speaker</title>
+      <portal_type>
+        <element>speaker</element>
+      </portal_type>
+    </field>
   </schema>
 </model>

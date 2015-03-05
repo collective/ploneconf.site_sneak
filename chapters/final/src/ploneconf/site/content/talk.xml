@@ -39,20 +39,20 @@
         <element>Auditorium</element>
       </values>
     </field>
-    <field name="speaker" type="zope.schema.TextLine">
+    <field name="speaker" type="zope.schema.TextLine" form:omitted="true">
       <description>Name (or names) of the speaker</description>
       <title>Speaker</title>
     </field>
-    <field name="email" type="zope.schema.TextLine">
+    <field name="email" type="zope.schema.TextLine" form:omitted="true">
       <description>Adress of the speaker</description>
       <title>Email</title>
     </field>
-    <field name="image" type="plone.namedfile.field.NamedBlobImage">
+    <field name="image" type="plone.namedfile.field.NamedBlobImage" form:omitted="true">
       <description />
       <required>False</required>
       <title>Image</title>
     </field>
-    <field name="speaker_biography" type="plone.app.textfield.RichText">
+    <field name="speaker_biography" type="plone.app.textfield.RichText" form:omitted="true">
       <description />
       <max_length>1000</max_length>
       <required>False</required>

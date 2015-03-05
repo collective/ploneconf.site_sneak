@@ -40,6 +40,7 @@ Scenario: As a site administrator I can add a Talk
    When I type 'My Talk' into the title field
     and I type 'Awesome talk' into the details field
     and I type 'Team Banzai' into the speakers field
+    and I choose 'Training' in the type of talk field
     and I type 'banzai@example.com' into the email field
     and I submit the form
    Then a talk with the title 'My Talk' has been created
@@ -49,10 +50,6 @@ Scenario: As a site administrator I can view a Talk
     and a talk 'My Talk'
    When I go to the talk view
    Then I can see the talk title 'My Talk'
-
-Scenario: As a visitor I can view the new talk list
-   When I go to the talk list view
-   Then I can see a talk about 'Diazo designs are great'
 
 
 *** Keywords *****************************************************************
@@ -75,7 +72,7 @@ I type '${title}' into the title field
   Input Text  name=form.widgets.IDublinCore.title  ${title}
 
 I type '${details}' into the details field
-  Select frame  form-widgets-details_ifr
+  Select frame  xpath=//div[@id='formfield-form-widgets-details']//iframe
   Input text  tinymce  ${details}
   Unselect Frame
 
@@ -84,6 +81,9 @@ I type '${speaker}' into the speakers field
 
 I type '${email}' into the email field
   Input Text  name=form.widgets.email  ${email}
+    
+I choose '${type}' in the type of talk field
+  Select Radio Button  form.widgets.type_of_talk  ${type}
 
 I submit the form
   Click Button  Save

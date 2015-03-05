@@ -46,7 +46,6 @@
     <browser:page
         name="talklistview"
         for="*"
-        layer="..interfaces.IPloneconfSiteLayer"
         class=".views.TalkListView"
         template="templates/talklistview.pt"
         permission="zope2.View"

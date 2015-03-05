@@ -1,4 +1,5 @@
 from pkg_resources import resource_stream
+from plone import api
 from plone.app.testing import SITE_OWNER_NAME
 from plone.app.testing import SITE_OWNER_PASSWORD
 from plone.app.testing import TEST_USER_ID
@@ -9,6 +10,8 @@ from ploneconf.site.testing import PLONECONF_SITE_FUNCTIONAL_TESTING
 from ploneconf.site.testing import PLONECONF_SITE_INTEGRATION_TESTING
 from zope.component import createObject
 from zope.component import queryUtility
+from zope.event import notify
+from zope.lifecycleevent import ObjectModifiedEvent
 import unittest
 
 
@@ -18,6 +21,7 @@ class TalkIntegrationTest(unittest.TestCase):
 
     def setUp(self):
         self.portal = self.layer['portal']
+        self.request = self.layer['request']
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
 
     def test_fti(self):
@@ -41,6 +45,97 @@ class TalkIntegrationTest(unittest.TestCase):
         self.portal.invokeFactory('talk', 'talk')
         self.assertTrue(self.portal.talk)
         # self.assertTrue(ITalk.providedBy(self.portal.talk))
+
+    def test_talklistempty(self):
+        view = api.content.get_view(name='talklistview',
+                                    context=self.portal,
+                                    request=self.request)
+        talks = view.talks()
+        self.assertEquals([], talks)
+
+    def test_talklist(self):
+        view = api.content.get_view(name='talklistview',
+                                    context=self.portal,
+                                    request=self.request)
+        api.content.create(container=self.portal,
+                           type='talk',
+                           id='talk',
+                           title='A Talk')
+        talks = view.talks()
+        self.assertEquals(1, len(talks))
+        self.assertEquals(['start',
+                           'audience',
+                           'speaker',
+                           'description',
+                           'title',
+                           'url',
+                           'type_of_talk',
+                           'room',
+                           'uuid'],
+                          talks[0].keys())
+
+    def test_talklist_multipleaudiences(self):
+        view = api.content.get_view(name='talklistview',
+                                    context=self.portal,
+                                    request=self.request)
+        api.content.create(container=self.portal,
+                           type='talk',
+                           id='talk',
+                           title='A Talk')
+        self.portal.talk.audience = ['alpha', 'beta']
+        notify(ObjectModifiedEvent(self.portal.talk))
+        talks = view.talks()
+        self.assertEquals(1, len(talks))
+        self.assertEquals('alpha, beta', talks[0]['audience'])
+
+    def test_talklist_filtering(self):
+        api.content.create(container=self.portal,
+                           type='talk',
+                           id='talk',
+                           title='A Talk')
+        api.content.create(container=self.portal,
+                           type='Folder',
+                           id='talks-folder',
+                           title='A talks Folder')
+        api.content.create(container=self.portal['talks-folder'],
+                           type='talk',
+                           id='talk',
+                           title='A Talk')
+        api.content.create(container=self.portal['talks-folder'],
+                           type='Document',
+                           id='a Document',
+                           title='A Document')
+        view = api.content.get_view(name='talklistview',
+                                    context=self.portal['talks-folder'],
+                                    request=self.request)
+        talks = view.talks()
+        self.assertEquals(1, len(talks))
+        self.assertEquals('A Talk', talks[0]['title'])
+
+
+class SlowTalkIntegrationTest(unittest.TestCase):
+
+    layer = PLONECONF_SITE_INTEGRATION_TESTING
+
+    level = 2
+
+    def setUp(self):
+        self.portal = self.layer['portal']
+        self.request = self.layer['request']
+        setRoles(self.portal, TEST_USER_ID, ['Manager'])
+
+    def test_talklist_many_results(self):
+        view = api.content.get_view(name='talklistview',
+                                    context=self.portal,
+                                    request=self.request)
+        for i in range(101):
+            api.content.create(container=self.portal,
+                               type='talk',
+                               id='talk_{}'.format(i),
+                               title='Talk {}'.format(i))
+        talks = view.talks()
+        self.assertEquals(101, len(talks))
+        self.assertTrue(16, len(talks[-1]['uuid']))
 
 
 class TalkFunctionalTest(unittest.TestCase):
@@ -82,7 +177,7 @@ class TalkFunctionalTest(unittest.TestCase):
         talk = self.portal['my-talk']
 
         self.assertEqual('My Talk', talk.title)
-        self.assertEqual('This is my talk',talk.description)
+        self.assertEqual('This is my talk', talk.description)
         self.assertEqual('Talk', talk.type_of_talk)
         self.assertEqual('Long awesome talk', talk.details.output)
         self.assertEqual({'Advanced'}, talk.audience)

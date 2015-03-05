@@ -3,6 +3,7 @@ from plone.dexterity.browser.view import DefaultView
 from z3c.relationfield.index import dump
 from zc.relation.interfaces import ICatalog
 from zope.component import getUtility
+
 import logging
 
 logger = logging.getLogger(__name__)

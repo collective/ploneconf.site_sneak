@@ -1,0 +1,52 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="ploneconf.site">
+<body>
+
+    <metal:main fill-slot="main">
+
+        <h1 class="documentFirstHeading">${context/title}</h1>
+
+        <div class="newsImageContainer">
+            <img tal:condition="python:getattr(context, 'image', None)"
+                 tal:attributes="src string:${context/absolute_url}/@@images/image/mini" />
+        </div>
+
+        <ul>
+            <li tal:condition="context/email">
+                Email:
+                <a class="email-link"
+                    tal:attributes="href string:mailto:${context/email}">
+                    ${context/email}
+                </a>
+            </li>
+            <li tal:condition="python: not context.company and context.homepage">
+                Homepage:
+                <a tal:attributes="href context/homepage">
+                    ${context/company}
+                </a>
+            </li>
+            <li tal:condition="context/company">
+                Company:
+                <a tal:attributes="href context/homepage">
+                    ${context/company}
+                </a>
+            </li>
+            <li tal:condition="context/twitter_name">
+                Twitter:
+                <a tal:attributes="href string:https://twitter.com/@${context/twitter_name}">
+                    ${context/twitter_name}
+                </a>
+            </li>
+            <li tal:condition="context/irc_name">
+                IRC: ${context/irc_name}
+            </li>
+        </ul>
+
+        <div tal:replace="structure view/w/biography/render">
+            Biography
+        </div>
+
+    </metal:main>
+</body>
+</html>

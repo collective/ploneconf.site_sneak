@@ -1,0 +1,80 @@
+.sponsor {
+    float: left;
+    margin: 0 1em 1em 0;
+}
+
+.sponsor:hover {
+    box-shadow: 0 0 8px #000000;
+    -moz-box-shadow: 0 0 8px #000000;
+    -webkit-box-shadow: 0 0 8px #000000;
+}
+
+/* Styles for ploneconf */
+header #portal-header #portal-searchbox .searchSection {
+    display: none;
+}
+
+#content .event.summary {
+    box-shadow: none;
+    float: none;
+    max-width: 100%;
+}
+
+.talkinfo #portal-column-content {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.17);
+    padding: 1em;
+    background-color: #fff;
+}
+
+.talkinfo h1 {
+    font-size: 20px;
+}
+
+.talkinfo .event.summary {
+    background-color: #fff;
+}
+
+/* Some css fixs to the default Plone 5-Theme */
+.formHelp {
+    display: block;
+}
+
+.field span.option {
+    display: block;
+}
+
+.field span.option input[type="checkbox"].required,
+.field span.option input[type="radio"].required {
+    margin-right: 0.4em;
+}
+
+.field span.option input[type="checkbox"].required:after,
+.field span.option input[type="radio"].required:after {
+    color: transparent;
+    content: '';
+}
+
+textarea {
+    height: 100px !important;
+}
+
+.select2-container-multi .select2-choices .select2-search-field input {
+    min-width: 200px !important;
+}
+
+.pat-textareamimetypeselector {
+    display: none;
+}
+
+/* Small fixes for toolbar */
+#edit-zone a {
+    outline: 0
+}
+
+#edit-zone.plone-toolbar-top.expanded  nav > ul > li {
+    border-right: 1px dotted #888;
+}
+
+#edit-zone.plone-toolbar-top.expanded  nav > ul a > span + span {
+    padding: 0 8px 0 0;
+}

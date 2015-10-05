@@ -6,35 +6,37 @@ from setuptools import setup
 
 
 long_description = (
-    open('README.rst').read()
-    + '\n' +
-    'Contributors\n'
-    '============\n'
-    + '\n' +
-    open('CONTRIBUTORS.rst').read()
-    + '\n' +
-    open('CHANGES.rst').read()
-    + '\n')
+    open('README.rst').read() +
+    '\n' +
+    'Contributors\n' +
+    '============\n' +
+    '\n' +
+    open('CONTRIBUTORS.rst').read() +
+    '\n' +
+    open('CHANGES.rst').read() +
+    '\n')
 
 
 setup(
     name='ploneconf.site',
-    version='0.1',
+    version='1.0a1',
     description="An add-on for Plone",
     long_description=long_description,
-    # Get more from http://pypi.python.org/pypi?%3Aaction=list_classifiers
+    # Get more from https://pypi.python.org/pypi?%3Aaction=list_classifiers
     classifiers=[
         "Environment :: Web Environment",
         "Framework :: Plone",
-        "Framework :: Plone :: 5.0a3",
+        "Framework :: Plone :: 5.0",
         "Programming Language :: Python",
         "Programming Language :: Python :: 2.7",
+        "Operating System :: OS Independent",
+        "License :: OSI Approved :: GNU General Public License v2 (GPLv2)",
     ],
     keywords='Python Plone',
-    author='Patrick Gerken',
-    author_email='do3cc@patrick-gerken.de',
-    url='http://pypi.python.org/pypi/ploneconf.site',
-    license='GPL',
+    author='Fulvio Casali',
+    author_email='fulviocasali@gmail.com',
+    url='https://pypi.python.org/pypi/ploneconf.site',
+    license='GPL version 2',
     packages=find_packages('src', exclude=['ez_setup']),
     namespace_packages=['ploneconf'],
     package_dir={'': 'src'},

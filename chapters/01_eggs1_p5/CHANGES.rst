@@ -2,9 +2,8 @@ Changelog
 =========
 
 
-0.1 (unreleased)
-----------------
+1.0a1 (unreleased)
+------------------
 
 - Initial release.
-  []
-
+  [fulv]

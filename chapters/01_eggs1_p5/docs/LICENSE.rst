@@ -1,4 +1,4 @@
-ploneconf.site Copyright 2015, Fulvio Casali
+ploneconf.site Copyright 2015, Patrick Gerken
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License version 2

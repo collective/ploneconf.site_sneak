@@ -25,4 +25,4 @@ after_success:
 
 notifications:
   email:
-    - fulviocasali@gmail.com
+    - do3cc@patrick-gerken.de

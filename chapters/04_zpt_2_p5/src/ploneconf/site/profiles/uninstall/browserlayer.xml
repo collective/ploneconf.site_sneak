@@ -2,6 +2,6 @@
 <layers>
   <layer
       name="ploneconf.site"
-      interface="ploneconf.site.interfaces.IPloneconfSiteLayer"
+      remove="true"
       />
 </layers>

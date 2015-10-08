@@ -1,30 +1,31 @@
-# -*- coding: UTF-8 -*-
 from Products.Five.browser import BrowserView
-from plone import api
-
-import logging
-logger = logging.getLogger(__name__)
+from plone.dexterity.browser.view import DefaultView
 
 
 class DemoView(BrowserView):
-    """This is a sample browser view with one method."""
+    """ This does nothing so far
+    """
 
-    def get_types(self):
-        """Returns a dict with type names and the amount of items
-        for this type in the site.
-        """
-        portal_catalog = api.portal.get_tool('portal_catalog')
-        portal_types = api.portal.get_tool('portal_types')
-        content_types = portal_types.listContentTypes()
-        results = []
-        for ct in content_types:
-            brains = portal_catalog(portal_type=ct)
-            if brains:
-                results.append({
-                    'type': ct,
-                    'qtt': len(brains),
-                })
-            else:
-                logger.info("No elements of type {0}".format(ct))
+    def __init__(self, context, request):
+        self.context = context
+        self.request = request
 
-        return results
+    def __call__(self):
+        # Implement your own actions
+
+        # This renders the template that was registered in zcml like this:
+        #   template="templates/training.pt"
+        return super(DemoView, self).__call__()
+        # If you don't register a template in zcml the Superclass of
+        # DemoView will have no __call__-method!
+        # In that case you have to call the template like this:
+        # from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+        # class DemoView(BrowserView):
+        # template = ViewPageTemplateFile('templates/training.pt')
+        # def __call__(self):
+        #    return self.template()
+
+
+class TalkView(DefaultView):
+    """ The default view for talks
+    """

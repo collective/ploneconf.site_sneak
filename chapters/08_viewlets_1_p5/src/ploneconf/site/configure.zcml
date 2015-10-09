@@ -5,26 +5,46 @@
     xmlns:i18n="http://namespaces.zope.org/i18n"
     i18n_domain="ploneconf.site">
 
-    <includeDependencies package="." />
+  <includeDependencies package="." />
 
-    <i18n:registerTranslations directory="locales" />
+  <i18n:registerTranslations directory="locales" />
 
-    <include package=".browser" />
-    <include package=".behaviors" />
+  <include package=".browser" />
 
-    <genericsetup:registerProfile
-        name="default"
-        title="ploneconf.site"
-        directory="profiles/default"
-        description="Installs the ploneconf.site add-on."
-        provides="Products.GenericSetup.interfaces.EXTENSION"
-        />
+  <include package=".behaviors" />
 
-    <genericsetup:importStep
-        name="ploneconf.site-postInstall"
-        title="ploneconf.site post_install import step"
-        description="Post install import step from ploneconf.site"
-        handler=".setuphandlers.post_install">
-    </genericsetup:importStep>
+  <genericsetup:registerProfile
+      name="default"
+      title="ploneconf.site"
+      directory="profiles/default"
+      description="Installs the ploneconf.site add-on."
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+
+  <genericsetup:importStep
+      name="ploneconf.site-postInstall"
+      title="ploneconf.site post_install import step"
+      description="Post install import step from ploneconf.site"
+      handler=".setuphandlers.post_install">
+  </genericsetup:importStep>
+
+  <genericsetup:registerProfile
+      name="uninstall"
+      title="ploneconf.site"
+      directory="profiles/uninstall"
+      description="Uninstalls the ploneconf.site add-on."
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+
+  <genericsetup:importStep
+      name="ploneconf.site-uninstall"
+      title="ploneconf.site uninstall import step"
+      description="Import step run during ininstalling ploneconf.site"
+      handler=".setuphandlers.uninstall">
+  </genericsetup:importStep>
+
+  <utility
+      factory=".setuphandlers.HiddenProfiles"
+      name="ploneconf.site-hiddenprofiles" />
 
 </configure>

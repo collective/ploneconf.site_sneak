@@ -15,7 +15,7 @@ class ISocial(model.Schema):
     )
 
     lanyrd = schema.URI(
-        title=u"Lanyrd-link",
+        title=u"Lanyrd link",
         description=u"Add URL",
         required=False,
     )

@@ -1,9 +1,8 @@
-# -*- coding: utf-8 -*-
 from plone import api
 import logging
 
 default_profile = 'profile-ploneconf.site:default'
-logger = logging.getLogger('ploneconf.site')
+logger = logging.getLogger(__name__)
 
 
 def upgrade_site(setup):
@@ -38,8 +37,7 @@ def upgrade_site(setup):
             # Skip if the talk is already in target-folder
             continue
         obj = brain.getObject()
-        logger.info(
-            'Moving %s to %s' % (obj.absolute_url(), talks.absolute_url()))
+        logger.info('Moving %s to %s' % (obj.absolute_url(), talks.absolute_url()))
         # Move each talk to the folder '/the-event/talks'
         api.content.move(
             source=obj,

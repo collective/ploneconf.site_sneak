@@ -2,22 +2,21 @@
       metal:use-macro="context/main_template/macros/master"
       i18n:domain="ploneconf.site">
 <body>
+    <metal:content-core fill-slot="content-core" tal:define="widgets view/w">
 
-    <metal:content-core fill-slot="content-core">
+        <tal:eventsummary replace="structure context/@@event_summary"/>
 
         <p>
             <span tal:content="context/type_of_talk">
                 Talk
             </span>
             suitable for
-            <span tal:replace="structure view/w/audience/render">
+            <span tal:replace="structure widgets/audience/render">
                 Audience
             </span>
         </p>
 
-        <tal:eventsummary replace="structure context/@@event_summary"/>
-
-        <div tal:content="structure view/w/details/render">
+        <div tal:content="structure widgets/details/render">
             Details
         </div>
 
@@ -32,12 +31,11 @@
                     Jane Doe
                 </strong>
             </a>
-            <div tal:content="structure view/w/speaker_biography/render">
+            <div tal:content="structure widgets/speaker_biography/render">
                 Biography
             </div>
         </div>
 
     </metal:content-core>
-
 </body>
 </html>

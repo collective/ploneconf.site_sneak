@@ -5,44 +5,64 @@
     xmlns:i18n="http://namespaces.zope.org/i18n"
     i18n_domain="ploneconf.site">
 
-    <includeDependencies package="." />
+  <includeDependencies package="." />
 
-    <i18n:registerTranslations directory="locales" />
+  <i18n:registerTranslations directory="locales" />
 
-    <include package=".browser" />
-    <include package=".behaviors" />
+  <include package=".browser" />
 
-    <include file="upgrades.zcml" />
+  <include package=".behaviors" />
 
-    <genericsetup:registerProfile
-        name="default"
-        title="ploneconf.site"
-        directory="profiles/default"
-        description="Installs the ploneconf.site add-on."
-        provides="Products.GenericSetup.interfaces.EXTENSION"
-        />
+  <include file="upgrades.zcml" />
 
-    <genericsetup:registerProfile
-        name="content"
-        title="ploneconf.site with initial content"
-        directory="profiles/content"
-        description="Extension profile for PloneConf Talk to add initial content"
-        provides="Products.GenericSetup.interfaces.EXTENSION"
-        />
+  <genericsetup:registerProfile
+      name="default"
+      title="ploneconf.site"
+      directory="profiles/default"
+      description="Installs the ploneconf.site add-on."
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
 
-    <genericsetup:importStep
-        name="ploneconf.site-postInstall"
-        title="ploneconf.site post_install import step"
-        description="Post install import step from ploneconf.site"
-        handler=".setuphandlers.post_install">
-        <depends name='typeinfo' />
-    </genericsetup:importStep>
+  <genericsetup:importStep
+      name="ploneconf.site-postInstall"
+      title="ploneconf.site post_install import step"
+      description="Post install import step from ploneconf.site"
+      handler=".setuphandlers.post_install">
+  </genericsetup:importStep>
 
-    <genericsetup:importStep
-        name="ploneconf.site-content"
-        title="ploneconf.site dummy content"
-        description="Post install import step from ploneconf.site with initial content"
-        handler=".setuphandlers.content">
-    </genericsetup:importStep>
+  <genericsetup:registerProfile
+      name="uninstall"
+      title="ploneconf.site"
+      directory="profiles/uninstall"
+      description="Uninstalls the ploneconf.site add-on."
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+
+  <genericsetup:importStep
+      name="ploneconf.site-uninstall"
+      title="ploneconf.site uninstall import step"
+      description="Import step run during ininstalling ploneconf.site"
+      handler=".setuphandlers.uninstall">
+  </genericsetup:importStep>
+
+  <genericsetup:registerProfile
+      name="content"
+      title="PloneConf Site initial content"
+      directory="profiles/content"
+      description="Extension profile for PloneConf Talk to add initial content"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+
+  <genericsetup:importStep
+      name="ploneconf.site-content"
+      title="ploneconf.site with initial content"
+      description="Post install import step from ploneconf.site with initial content"
+      handler=".setuphandlers.content">
+      <depends name='typeinfo' />
+  </genericsetup:importStep>
+
+  <utility
+      factory=".setuphandlers.HiddenProfiles"
+      name="ploneconf.site-hiddenprofiles" />
 
 </configure>

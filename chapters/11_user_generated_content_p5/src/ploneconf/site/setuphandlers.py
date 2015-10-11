@@ -1,19 +1,87 @@
 # -*- coding: utf-8 -*-
+from Products.CMFPlone.interfaces import INonInstallable
+from zope.interface import implementer
 from Products.CMFPlone.interfaces.constrains import ISelectableConstrainTypes
 from plone import api
 from plone.app.dexterity.behaviors import constrains
-from logging import getLogger
+from plone.app.textfield.value import RichTextValue
 
-logger = getLogger(__name__)
+import logging
 
+PROFILE_ID = 'profile-ploneconf.site:default'
+logger = logging.getLogger(__name__)
+
+
+@implementer(INonInstallable)
+class HiddenProfiles(object):
+
+    def getNonInstallableProfiles(self):
+        """Hide uninstall profile from site-creation and quickinstaller"""
+        return [
+            'ploneconf.site:uninstall',
+        ]
+
+
+def post_install(context):
+    """Post install script"""
+    if isNotCurrentProfile(context):
+        return
+    # Do something during the installation of this package
+    portal = api.portal.get()
+    set_up_content(portal)
+
+
+def uninstall(context):
+    """Uninstall script"""
+    if context.readDataFile('ploneconfsite_uninstall.txt') is None:
+        return
+    # Do something during the uninstallation of this package
+
+
+def isNotCurrentProfile(context):
+    return context.readDataFile('ploneconfsite_default.txt') is None
+
+
+def set_up_content(portal):
+    """Create and configure some initial content"""
+    # Abort if there is already a folder 'talks'
+    if 'talks' in portal:
+        logger.info('An item called "talks" already exists')
+        return
+    talks = api.content.create(
+        container=portal,
+        type='Folder',
+        id='talks',
+        title='Talks')
+    api.content.transition(talks, 'publish')
+
+    # Allow logged-in users to create content
+    api.group.grant_roles(
+        groupname='AuthenticatedUsers',
+        roles=['Contributor'],
+        obj=talks)
+
+    # Constrain addable types to talk
+#    behavior = ISelectableConstrainTypes(talks)
+#    behavior.setConstrainTypesMode(constrains.ENABLED)
+#    behavior.setLocallyAllowedTypes(['Talk'])
+#    behavior.setImmediatelyAddableTypes(['Talk'])
+    logger.info('Created and configured %s' % talks.absolute_url())
 
 STRUCTURE = [
+    {
+        'type': 'Document',
+        'title': u'Plone Conference 2022',
+        'id': 'plone-conference-2022',
+        'description': u'',
+        'text': u'<h2>Hello World</h2>'
+    },
     {
         'type': 'Folder',
         'title': u'The Event',
         'id': 'the-event',
         'description': u'Plone Conference 2022',
-        'default-page': 'frontpage-for-the-event',
+        'layout': 'frontpage-for-the-event',
         'children': [{
             'type': 'Document',
             'title': u'Frontpage for the-event',
@@ -62,7 +130,7 @@ STRUCTURE = [
             'type': 'News Item',
             'title': u'Submit your talks!',
             'id': 'submit-your-talks',
-            'description': u'', }
+            'description': u'',}
         ],
     },
     {
@@ -74,27 +142,10 @@ STRUCTURE = [
 ]
 
 
-def isNotCurrentProfile(context):
-    return context.readDataFile('ploneconfsite_marker.txt') is None
-
-
-def post_install(context):
-    """Setuphandler for the profile 'default'
-    """
-    if isNotCurrentProfile(context):
-        return
-    # Do something during the installation of this package
-    portal = api.portal.get()
-    members = portal.get('Members', None)
-    if members is not None:
-        api.content.delete(members)
-
-
 def content(context):
-    """Setuphandler for the profile 'content'
-    """
     if context.readDataFile('ploneconfsite_content_marker.txt') is None:
         return
+
     portal = api.portal.get()
     for item in STRUCTURE:
         _create_content(item, portal)
@@ -114,8 +165,16 @@ def _create_content(item, container):
         new.setLayout(item['layout'])
     if item.get('default-page', False):
         new.setDefaultPage(item['default-page'])
-    if item.get('allowed_types', False):
-        _constrain(new, item['allowed_types'])
+    if item.get('description', False):
+        new.setDescription(item['description'])
+    if item.get('text', False):
+        new.text = RichTextValue(
+            item['text'],
+            'text/html',
+            'text/plain'
+        )
+    # if item.get('allowed_types', False):
+    #     _constrain(new, item['allowed_types'])
     if item.get('local_roles', False):
         for local_role in item['local_roles']:
             api.group.grant_roles(

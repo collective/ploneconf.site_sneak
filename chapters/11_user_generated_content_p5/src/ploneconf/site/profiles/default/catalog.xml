@@ -9,12 +9,8 @@
   <index name="audience" meta_type="KeywordIndex">
     <indexed_attr value="audience"/>
   </index>
-  <index name="room" meta_type="FieldIndex">
-    <indexed_attr value="room"/>
-  </index>
 
   <column value="audience" />
   <column value="type_of_talk" />
   <column value="speaker" />
-  <column value="room" />
 </object>

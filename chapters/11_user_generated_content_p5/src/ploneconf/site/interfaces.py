@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
-from zope.interface import Interface
+"""Module where all interfaces, events and exceptions live."""
+
 from zope.publisher.interfaces.browser import IDefaultBrowserLayer
+from zope.interface import Interface
 
 
 class IPloneconfSiteLayer(IDefaultBrowserLayer):
@@ -8,4 +10,5 @@ class IPloneconfSiteLayer(IDefaultBrowserLayer):
 
 
 class ITalk(Interface):
-    """Marker interface for Talks"""
+    """Marker interface for Talks
+    """

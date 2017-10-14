@@ -1,6 +1,6 @@
 ploneconf.site_sneak
 ====================
 
-package used for trainings
+This package is obsolete and was superseded by https://github.com/collective/ploneconf.site
 
-See http://plone-training.readthedocs.org/en/latest/sneak.html
+See https://training.plone.org/5/mastering-plone/code.html

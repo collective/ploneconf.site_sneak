@@ -1,7 +1,6 @@
-:py:mod:`ploneconf.site_sneak`
-==============================
+ploneconf.site_sneak
+====================
 
-package used for trainings
+This package is obsolete and was superseded by https://github.com/collective/ploneconf.site
 
-Obsolete; see http://training.plone.org/4/sneak.html
-Superseded by https://github.com/collective/ploneconf.site
+See https://training.plone.org/5/mastering-plone/code.html
